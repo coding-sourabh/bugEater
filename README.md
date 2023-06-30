@@ -1,1 +1,1 @@
-# bugEater
+Table script is under resource foder in src
