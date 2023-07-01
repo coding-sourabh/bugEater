@@ -2,14 +2,14 @@ package com.bugeater.bugeaterIntern.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bugeater.bugeaterIntern.dto.MentorDTO;
 import com.bugeater.bugeaterIntern.dto.ProjectDTO;
-import com.bugeater.bugeaterIntern.entity.Mentor;
 import com.bugeater.bugeaterIntern.entity.Project;
+import com.bugeater.bugeaterIntern.exception.BugInternException;
 import com.bugeater.bugeaterIntern.repository.ProjectRepository;
 
 import jakarta.transaction.Transactional;
@@ -20,36 +20,50 @@ public class ProjectServiceImpl implements ProjectService {
 	@Autowired
 	ProjectRepository projectRepository;
 	
+	@Override
+	public String addProject(ProjectDTO projectDTO) {
+		Project project = new Project();
+		project.setFromDTO(projectDTO);
+		projectRepository.save(project);
+		return "Project Added Successfully";
+	}
+	
+	@Override
 	public List<ProjectDTO> getAllProjects() {
 		List<ProjectDTO> projectDTOs = new ArrayList<>();
 		Iterable<Project> itr = projectRepository.findAll();
 		
 		itr.forEach(project -> {
 			ProjectDTO projectDTO = new ProjectDTO();
-			projectDTO.setProjectId(project.getProjectId());
-			projectDTO.setProjectName(project.getProjectName());
-			projectDTO.setProjectDesc(project.getProjectDesc());
-			projectDTO.setProjectStipend(project.getProjectStipend());
-			projectDTO.setProjectVacancy(project.getProjectVacancy());
-			projectDTO.setProjectStartDate(project.getProjectStartDate());
-			projectDTO.setProjectLocation(project.getProjectLocation());
-			projectDTO.setProjectOrg(project.getProjectOrg());
-			
-			Mentor mentor = project.getMentor();
-			MentorDTO mentorDTO = new MentorDTO();
-
-			mentorDTO.setMentorId(mentor.getMentorId());
-			mentorDTO.setMentorName(mentor.getMentorName());
-			mentorDTO.setMentorEmail(mentor.getMentorEmail());
-			mentorDTO.setMentorPass(mentor.getMentorPass());
-			mentorDTO.setMentorImg(mentor.getMentorImg());
-			mentorDTO.setMentorMobile(mentor.getMentorMobile());
-			mentorDTO.setMentorOrg(mentor.getMentorOrg());			
-			mentorDTO.setMentorDesc(mentor.getMentorDesc());		
-			mentorDTO.setMentorExp(mentor.getMentorExp());
-			projectDTO.setMentorDTO(mentorDTO);
+			projectDTO.setFromEntity(project);    // this method make a DTO from an entiry
 			projectDTOs.add(projectDTO);
 		});
 		return projectDTOs;
+	}
+
+	@Override
+	public ProjectDTO getProjectById(Integer projectId) throws BugInternException {
+		Optional<Project> projectOptional = projectRepository.findById(projectId);
+		
+		Project project = projectOptional.orElseThrow(() -> new BugInternException("Project Id is invalid"));
+		ProjectDTO projectDTO = new ProjectDTO();
+		projectDTO.setFromEntity(project);
+		return projectDTO;
+	}
+
+	@Override
+	public String updateProjectById(Integer projectId, ProjectDTO projectDTO) throws BugInternException {
+		Optional<Project> projectOptional = projectRepository.findById(projectId);
+		
+		Project project = projectOptional.orElseThrow(() -> new BugInternException("Project Id is invalid"));
+		project.setFromDTO(projectDTO);   // sets the value from a project dTO
+		projectRepository.save(project);
+		return "Project Updated Successfully";
+	}
+	
+	@Override
+	public String deleteProjectById(Integer projectId) throws BugInternException {
+		projectRepository.deleteById(projectId);
+		return "Project Deletion Successfull!";
 	}
 }

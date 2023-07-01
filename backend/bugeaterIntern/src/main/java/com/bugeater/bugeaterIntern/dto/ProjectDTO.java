@@ -2,6 +2,9 @@ package com.bugeater.bugeaterIntern.dto;
 
 import java.util.Date;
 
+import com.bugeater.bugeaterIntern.entity.Mentor;
+import com.bugeater.bugeaterIntern.entity.Project;
+
 public class ProjectDTO {
 	private Integer projectId;
 	private String projectName;
@@ -75,5 +78,30 @@ public class ProjectDTO {
 		this.mentorDTO = mentorDTO;
 	}
 	
-	
+	public ProjectDTO setFromEntity(Project project) {
+
+		this.setProjectId(project.getProjectId());
+		this.setProjectName(project.getProjectName());
+		this.setProjectDesc(project.getProjectDesc());
+		this.setProjectStipend(project.getProjectStipend());
+		this.setProjectVacancy(project.getProjectVacancy());
+		this.setProjectStartDate(project.getProjectStartDate());
+		this.setProjectLocation(project.getProjectLocation());
+		this.setProjectOrg(project.getProjectOrg());
+		
+		Mentor mentor = project.getMentor();
+		MentorDTO mentorDTO = new MentorDTO();
+
+		mentorDTO.setMentorId(mentor.getMentorId());
+		mentorDTO.setMentorName(mentor.getMentorName());
+		mentorDTO.setMentorEmail(mentor.getMentorEmail());
+		mentorDTO.setMentorPass(mentor.getMentorPass());
+		mentorDTO.setMentorImg(mentor.getMentorImg());
+		mentorDTO.setMentorMobile(mentor.getMentorMobile());
+		mentorDTO.setMentorOrg(mentor.getMentorOrg());			
+		mentorDTO.setMentorDesc(mentor.getMentorDesc());		
+		mentorDTO.setMentorExp(mentor.getMentorExp());
+		this.setMentorDTO(mentorDTO);
+		return this;
+	}
 }

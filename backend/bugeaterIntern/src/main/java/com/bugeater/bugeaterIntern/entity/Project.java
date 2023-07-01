@@ -2,8 +2,10 @@ package com.bugeater.bugeaterIntern.entity;
 
 import java.util.Date;
 
+import com.bugeater.bugeaterIntern.dto.MentorDTO;
+import com.bugeater.bugeaterIntern.dto.ProjectDTO;
+
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -109,5 +111,28 @@ public class Project {
 		this.mentor = mentor;
 	}
 	
-	
+	public void setFromDTO(ProjectDTO projectDTO) {
+		this.setProjectId(projectDTO.getProjectId());
+		this.setProjectName(projectDTO.getProjectName());
+		this.setProjectDesc(projectDTO.getProjectDesc());
+		this.setProjectStipend(projectDTO.getProjectStipend());
+		this.setProjectVacancy(projectDTO.getProjectVacancy());
+		this.setProjectStartDate(projectDTO.getProjectStartDate());
+		this.setProjectLocation(projectDTO.getProjectLocation());
+		this.setProjectOrg(projectDTO.getProjectOrg());
+		
+		MentorDTO mentorDTO = projectDTO.getMentorDTO();
+		Mentor mentor = new Mentor();
+
+		mentor.setMentorId(mentorDTO.getMentorId());
+		mentor.setMentorName(mentorDTO.getMentorName());
+		mentor.setMentorEmail(mentorDTO.getMentorEmail());
+		mentor.setMentorPass(mentorDTO.getMentorPass());
+		mentor.setMentorImg(mentorDTO.getMentorImg());
+		mentor.setMentorMobile(mentorDTO.getMentorMobile());
+		mentor.setMentorOrg(mentorDTO.getMentorOrg());			
+		mentor.setMentorDesc(mentorDTO.getMentorDesc());		
+		mentor.setMentorExp(mentorDTO.getMentorExp());
+		this.setMentor(mentor);
+	}
 }

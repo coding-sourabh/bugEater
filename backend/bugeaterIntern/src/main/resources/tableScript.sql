@@ -14,6 +14,10 @@ mentor_exp double,
 mentor_desc varchar(500)
 );
 
+insert into mentor values(1, "sourabh kumar", "sk@email.com", "123456", "https://png.pngtrmentoree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg",
+"1234567890", "skey", 1.0, "Started in infosys, managing backend for various projects");
+select * from mentor;
+
 create table user (
 user_id int auto_increment primary key,
 user_name varchar(200),
@@ -39,6 +43,11 @@ project_org varchar(200),
 mentor_id int,
 foreign key (mentor_id) references mentor(mentor_id)
 );
+
+INSERT INTO project (project_id, project_name, project_desc, project_duration, project_stipend, project_vacancy, project_start_date, project_location, project_org, mentor_id)
+VALUES (1, 'Nutrify', 'This is the platform to make people more healthy by suggesting them diets, exercises and other healthy habits', 3, 50000.0, 10, '2023-07-01', 'Bangalore', 'skey', 1);
+
+select * from project;
 
 create table tech (
 tech_id int auto_increment primary key,

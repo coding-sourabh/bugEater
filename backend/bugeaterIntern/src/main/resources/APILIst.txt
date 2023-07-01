@@ -1,0 +1,20 @@
+                                        PROJECT API
+Get all projects : 
+ex: http://localhost:8088/project/all
+
+Get a single project by Id : 
+http://localhost:8088/project/{projectID}
+ex : http://localhost:8088/project/1
+
+Update a project by project Id :
+http://localhost:8088/project/update/{projectID}
+ex : http://localhost:8088/project/1
+You need to provide a request body which contains similar object like projectDTO
+
+Delete Project By Project Id
+http://localhost:8088/project/delete/{projectID}
+ex: http://localhost:8088/project/1
+
+Add Project
+http://localhost:8088/add
+Need to provide projectDTO similar object in request body
