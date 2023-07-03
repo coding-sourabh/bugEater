@@ -1,0 +1,11 @@
+.container{
+    max-width: 600px;
+    max-height: 300px;
+}
+.container div:nth-child(1){
+    display: flex;
+    justify-content: space-between;
+}
+.container div{
+    margin-bottom: 15px;
+}
