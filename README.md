@@ -1,1 +1,1 @@
-Table script is under resource foder in src
+Table script is under resource foder in src.
