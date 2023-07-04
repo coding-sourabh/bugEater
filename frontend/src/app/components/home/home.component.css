@@ -1,0 +1,25 @@
+.home{
+    display: flex;
+    justify-content: flex-start;
+    margin: 20px 0;
+    margin-left: 100px;
+}
+img{
+    width: 70%;
+    margin: 80px 0 25px 80px;
+}
+.home div{
+    width: 50%;
+}
+.home div:nth-child(2){
+    margin: 60px 25px 0 0;
+}
+h2{
+    margin: 5px 0 20px 0;
+}
+div:nth-child(2) div{
+    margin-top: 120px;
+}
+button{
+    margin-left: 25px;
+}
