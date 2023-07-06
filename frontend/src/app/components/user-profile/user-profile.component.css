@@ -1,0 +1,14 @@
+div div{
+    display: flex;
+}
+div p{
+    margin-left: 50px;
+}
+button{
+    margin-top: 50px;
+    margin-left: 40%;
+    background: #000;
+}
+h2{
+    margin-bottom: 20px;
+}
