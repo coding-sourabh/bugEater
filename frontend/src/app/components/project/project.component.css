@@ -1,0 +1,21 @@
+.container{
+    max-width: 700px;
+    max-height: 300px;
+}
+button{
+    margin: 0;
+}
+.container div:nth-child(1){
+    display: flex;
+    justify-content: space-between;
+}
+.container div{
+    margin-bottom: 18px;
+}
+p{
+    font-size: 14px;
+}
+.container div:nth-child(3), .container div:nth-child(4){
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,6 +1,3 @@
-div div{
-    display: flex;
-}
 div p{
     margin-left: 50px;
 }
@@ -9,6 +6,14 @@ button{
     margin-left: 40%;
     background: #000;
 }
-h2{
+h3{
     margin-bottom: 20px;
+}
+.profile-header{
+    display: flex;
+}
+img{
+    margin: 0;
+    height: 100px;
+    width: 100px;
 }
